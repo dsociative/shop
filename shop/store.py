@@ -20,3 +20,7 @@ class Store(object):
 
     def load_good(self, name, data, base_cls):
         return self.mapper.get(name, base_cls)(name, data)
+
+    def buy(self, name, *args):
+        good = self.goods.get(name)
+        return good.buy(*args)

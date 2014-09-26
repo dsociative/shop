@@ -31,7 +31,9 @@ def store(source):
 
 
 class TestEnergyGood(BaseGood):
-    pass
+    def buy(self, user, count):
+        user['energy'] += count
+        return user
 
 
 class TestAnotherGood(BaseGood):
@@ -68,3 +70,8 @@ def test_init(store):
     assert isinstance(store.goods['energy'], TestEnergyGood)
     assert isinstance(store.goods['coins'], BaseGood)
     assert isinstance(store.goods['vip'], BaseGood)
+
+
+def test_buy(store):
+    user = {'energy': 0}
+    assert store.buy('energy', user, 30)
